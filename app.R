@@ -340,7 +340,7 @@ server <- function(input, output, session) {
   # add compare group UI
   observeEvent(input$dge_compare_add_buttom, {
     # add counter, omit 0, start counter from 1
-    if(first(dge_compare_counter()) == 0) {
+    if(dplyr::first(dge_compare_counter()) == 0) {
       dge_compare_counter(dge_compare_counter() + 1)
     } else {
       dge_compare_counter(c(dge_compare_counter(), last(dge_compare_counter()) + 1))
