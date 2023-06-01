@@ -1,4 +1,6 @@
 
+#
+source("global.R")
 ##### UTILITIES #####
 source("utilities.R")
 
@@ -82,12 +84,12 @@ server <- function(input, output, session) {
   
   ##### get results #####
   dds <- reactive({ read_rds("dds.rds") })
-  observe({ glimpse(dds) })
+  observe({ glimpse(dds()) })
   results <- deseq2_compare_server("deseq2_compare", dds)
   
   ##### enrichment #####
-  results <- reactive({ read_rds("results.rds") })
-  observe({ glimpse(results$results_sig()) })
+  # results <- reactive({ read_rds("results.rds") })
+  # observe({ glimpse(results$results_sig()) })
   enrichment <- enrichment_ora_server("enrichment_ora", results$results_sig)
   
   
